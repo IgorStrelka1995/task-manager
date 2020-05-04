@@ -1,0 +1,16 @@
+body {
+    min-height: 75rem;
+}
+
+.main-page, .list-table, .flash-message {
+    margin-top: 10px;
+}
+
+.admin-page {
+    margin-top: 10px;
+    background-color: #ffffff;
+}
+
+#tasks-table_wrapper {
+    width: 100%;
+}

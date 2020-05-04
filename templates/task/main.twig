@@ -1,0 +1,48 @@
+{% extends 'base.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <div class="jumbotron main-page">
+        <div class="row">
+            <div class="col-8"></div>
+            <div class="col-4 text-right">
+                <a href="/create" class="btn btn-success">Create Task</a>
+                {% if session.user_id == false %}
+                    <a href="/login" class="btn btn-success">Sign In</a>  
+                {% else %}   
+                    <a href="/admin" class="btn btn-success">Panel admin</a> 
+                    <a href="/logout" class="btn btn-success">Logout</a>     
+                {% endif %}
+            </div>
+        </div>
+        <div class="row list-table">
+            <table class="table table-bordered" id="tasks-table"> 
+                <thead> 
+                    <tr>  
+                        <th class="th-sm">Username</th> 
+                        <th class="th-sm">Email</th> 
+                        <th>Text</th> 
+                        <th class="th-sm">Status</th> 
+                    </tr> 
+                </thead> 
+                <tbody> 
+                    {% for task in tasks %}
+                        <tr> 
+                            <td>{{ task.username }}</td> 
+                            <td>{{ task.email }}</td> 
+                            <td>{{ task.text }}</td>
+                            <td>{{ task.status }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody> 
+            </table>
+        </div>
+    </div>
+{% endblock %} 
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="../../public/js/script.js"></script>
+{% endblock %}

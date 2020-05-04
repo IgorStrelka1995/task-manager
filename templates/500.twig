@@ -1,0 +1,11 @@
+{% extends 'base.twig' %}
+
+{% block title %}500{% endblock %}
+
+{% block body %}
+    <div class="flash-message">
+        <div class="alert alert-danger" role="alert">
+           {{ error }}
+        </div>
+    </div>   
+{% endblock %}

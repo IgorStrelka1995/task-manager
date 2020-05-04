@@ -1,0 +1,45 @@
+{% extends 'base.twig' %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block body %}
+    <div class="jumbotron admin-page ">
+        <div class="row">
+            <div class="col-8"></div>
+            <div class="col-4 text-right"> 
+                <a href="/" class="btn btn-success">Go to client side</a> 
+                <a href="/logout" class="btn btn-success">Logout</a>     
+            </div>
+        </div>
+        <div class="row list-table">
+            <table class="table table-bordered"> 
+                <thead> 
+                    <tr> 
+                        <th>#</th> 
+                        <th>Username</th> 
+                        <th>Email</th> 
+                        <th>Text</th> 
+                        <th>Status</th>
+                        <th>View</th> 
+                    </tr> 
+                </thead> 
+                <tbody> 
+                    {% for task in tasks %}
+                    <tr> 
+                        <th scope="row">{{ task.id }}</th> 
+                        <td>{{ task.username }}</td> 
+                        <td>{{ task.email }}</td> 
+                        <td>{{ task.text }}</td>
+                        <td>
+                            <div>{{ task.status }}</div>
+                            {% if task.updated %}<div>edited by administrator</div>{% endif %}
+                        </td>
+                        <td><a href="/admin/task/{{ task.id }}">View</a></td>
+                    </tr> 
+                    {% endfor %}
+                </tbody> 
+            </table>
+        </div>
+    </div>
+{% endblock %}   
+

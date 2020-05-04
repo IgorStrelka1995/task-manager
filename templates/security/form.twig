@@ -1,0 +1,32 @@
+{% extends 'base.twig' %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block body %}
+
+    <div class="jumbotron main-page">
+        <h3 class="text-center">Sign In</h3>
+        <form method="POST">
+            <div class="form-group">
+                <label for="auth-login">Login</label>
+                <input type="text" class="form-control {% if errors %}{% for key, error in errors %}{% if key == 'login' %}is-invalid{% endif %}{% endfor %}{% endif %}" id="auth-login" name="login" {% if login %} value="{{ login }}" {% endif %}>
+                {% if errors %}{% for key, error in errors %}{% if key == 'login' %}<div class="invalid-feedback">{{ error }}</div>{% endif %}{% endfor %}{% endif %}
+            </div>
+            <div class="form-group">
+                <label for="auth-password">Password</label>
+                <input type="password" class="form-control {% if errors %}{% for key, error in errors %}{% if key == 'password' %}is-invalid{% endif %}{% endfor %}{% endif %}" id="auth-password" name="password">
+                {% if errors %}{% for key, error in errors %}{% if key == 'password' %}<div class="invalid-feedback">{{ error }}</div>{% endif %}{% endfor %}{% endif %}
+            </div>
+
+            {% if message %}
+                <div class="form-group">
+                    <div class="text-left text-danger">{{ message }}</div>
+                </div>
+            {% endif %}
+
+        <button type="submit" class="btn btn-success" name="create-task">Sign In</button>
+        <a href="/" class="btn btn-info">Cancel</a>
+        </form>
+    </div>   
+
+{% endblock %}            

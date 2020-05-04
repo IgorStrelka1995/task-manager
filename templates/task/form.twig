@@ -1,0 +1,31 @@
+{% extends 'base.twig' %}
+
+{% block title %}Create task{% endblock %}
+
+{% block body %}
+
+    <div class="jumbotron main-page">
+        <h3 class="text-center">Create new task</h3>
+        <form method="POST">
+            <div class="form-group">
+                <label for="create-task-email">Email</label>
+                <input type="text" class="form-control {% if errors %}{% for key, error in errors %}{% if key == 'email' %}is-invalid{% endif %}{% endfor %}{% endif %}" id="create-task-email" name="email" {% if email %} value="{{ email }}" {% endif %}>
+                {% if errors %}{% for key, error in errors %}{% if key == 'email' %}<div class="invalid-feedback">{{ error }}</div>{% endif %}{% endfor %}{% endif %}
+            </div>
+            <div class="form-group">
+                <label for="create-task-username">Username</label>
+                <input type="text" class="form-control {% if errors %}{% for key, error in errors %}{% if key == 'username' %}is-invalid{% endif %}{% endfor %}{% endif %}" id="create-task-username" name="username" {% if username %} value="{{ username }}" {% endif %}>
+                {% if errors %}{% for key, error in errors %}{% if key == 'username' %}<div class="invalid-feedback">{{ error }}</div>{% endif %}{% endfor %}{% endif %}
+            </div>
+            <div class="form-group">
+                <label for="create-task-text">Task</label>
+                <textarea class="form-control {% if errors %}{% for key, error in errors %}{% if key == 'task' %}is-invalid{% endif %}{% endfor %}{% endif %}" rows="3" id="create-task-text" name="task">{% if task %} {{ task }} {% endif %}</textarea>
+                {% if errors %}{% for key, error in errors %}{% if key == 'task' %}<div class="invalid-feedback">{{ error }}</div>{% endif %}{% endfor %}{% endif %}
+            </div>
+
+        <button type="submit" class="btn btn-success" name="create-task">Create</button>
+        <a href="/" class="btn btn-info">Cancel</a>
+        </form>
+    </div>  
+
+{% endblock %}            

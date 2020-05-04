@@ -1,0 +1,29 @@
+{% extends 'base.twig' %}
+
+{% block title %}Task{% endblock %}
+
+{% block body %}
+        <div class="jumbotron main-page">
+        <h3>Admin page</h3>
+            <div class="list-table">
+               <form method="POST">
+                    <div class="form-group">
+                        <label for="create-task-text">Text</label>
+                        <textarea class="form-control {% if errors %}{% for key, error in errors %}{% if key == 'task' %}is-invalid{% endif %}{% endfor %}{% endif %}" rows="3" id="create-task-text" name="edit-task">{{ task.text }}</textarea>
+                        {% if errors %}{% for key, error in errors %}{% if key == 'task' %}<div class="invalid-feedback">{{ error }}</div>{% endif %}{% endfor %}{% endif %}
+                    </div>
+                    {% if task.status == 'created' %}
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" name="edit-complete" value="y">
+                            Completed
+                        </label>
+                    </div>
+                    {% endif %}
+
+                <button type="submit" class="btn btn-success" name="create-task">Change</button>
+                <a href="/admin" class="btn btn-info">Cancel</a>
+                </form>
+            </div>
+        </div>
+{% endblock %}   
